@@ -62,10 +62,11 @@ document.body.addEventListener('keyup', e => {
 
 function findControlPoint(x, y) {
   if (!S_PONT) return null
-  for (const c of curvas) {
+  for (const [i,c] of curvas.entries()) {
     for (const p of c.controls) {
       if (Math.abs(p[0]-x) < 6 && Math.abs(p[1]-y) < 6) {
         c.iControl = p
+        currentCurve = i
         return {curva: c, control: p}
       }
     }

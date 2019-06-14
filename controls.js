@@ -27,3 +27,8 @@ ccheck('#scurv', x => {
   S_CURV = x
   update()
 })
+document.querySelector('#novo').addEventListener('click', () => {
+  const len = curvas.push(new Curva([width/2, height/2]))
+  currentCurve = len-1
+  update()
+})

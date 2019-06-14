@@ -9,10 +9,13 @@ class Curva {
   }
   draw(context, selected) {
     if (S_PONT) {
+      const color = !selected ? ()=> '#656595' : p => {
+        return (p===this.iControl)?'#24EF24':'#2265AA'
+      }
       for (const p of this.controls) {
         context.beginPath()
         context.arc(p[0], p[1], 5, 0, PI_2, false)
-        context.strokeStyle=(p===this.iControl)?'#24EF24':'#2265AA'
+        context.strokeStyle=color(p)
         context.stroke()
       }
     }
