@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mini-projeto 2</title>
+    <meta charset="utf-8">
+    <link href="stl.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="botoes">
+      <button id="novo">Criar nova curva</button>
+      <button id="next">Selecionar próxima curva</button>
+      <button id="remove">Apagar curva</button>
+    </div>
+    <div class="inputs">
+      <label for="naval">Número de avaliações: </label><input type="number" id="naval" value="3"/><br/>
+      <label for="spont">Mostrar pontos de controle: </label><input type="checkbox" id="spont" checked/><br/>
+      <label for="spoli">Mostrar poligonais de controle: </label><input type="checkbox" id="spoli" checked/><br/>
+      <label for="scurv">Mostrar Curvas: </label><input type="checkbox" id="scurv" checked/><br/>
+    </div>
+    <canvas id="canvas" width="500" height="400"></canvas>
+
+    <script src="controls.js"></script>
+    <script src="curva.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
