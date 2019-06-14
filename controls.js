@@ -7,6 +7,7 @@ document.querySelector('#naval').addEventListener('input', e => {
   const n = parseInt(e.target.value)
   if (!isNaN(n)) {
     N_AVAL = n
+    update()
   }
 })
 function ccheck(query, cb) {
@@ -14,6 +15,15 @@ function ccheck(query, cb) {
     return cb(e.target.checked)
   })
 }
-ccheck('#spont', x => S_PONT = x)
-ccheck('#spoli', x => S_POLI = x)
-ccheck('#scurv', x => S_CURV = x)
+ccheck('#spont', x => {
+  S_PONT = x
+  update()
+})
+ccheck('#spoli', x => {
+  S_POLI = x
+  update()
+})
+ccheck('#scurv', x => {
+  S_CURV = x
+  update()
+})

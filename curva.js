@@ -15,19 +15,27 @@ class Curva {
         context.stroke()
       }
     }
+    if (S_CURV && N_AVAL > 0) {
+      context.beginPath()
+      const n = 1 / N_AVAL
+      let previous = this._bezier(0)
+      context.moveTo(previous[0], previous[1])
+      for (let i = 1; i <= N_AVAL; ++i) {
+        const point = this._bezier(i*n)
+        context.lineTo(point[0], point[1])
+      }
+      context.stroke()
+    }
   }
-  getBezier() {
-    const pts = this.controls
-    return t => {
-      for (var a = pts; a.length > 1; a = b) {
-        for (var i = 0, b = [], j; i < a.length - 1; i++) {
-          for (b[i] = [], j = 0; j < a[i].length; j++) {
-            b[i][j] = a[i][j] * (1 - t) + a[i+1][j] * t;
-          }
+  _bezier(t) {
+    for (var a = this.controls; a.length > 1; a = b) {
+      for (var i = 0, b = [], j; i < a.length - 1; i++) {
+        for (b[i] = [], j = 0; j < a[i].length; j++) {
+          b[i][j] = a[i][j] * (1 - t) + a[i+1][j] * t;
         }
       }
-      return a[0];
     }
+    return a[0];
   }
 }
 function deviateFrom(point) {
