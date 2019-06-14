@@ -1,6 +1,8 @@
 const PI_2 = 2*Math.PI
 class Curva {
   constructor(center) {
+    // cria três pontos aleatórios ao redor do centro
+    // pra ser os controls
     this.controls = [
       deviateFrom(center),
       deviateFrom(center),
@@ -8,18 +10,25 @@ class Curva {
     ]
   }
   draw(context, selected) {
+    // se não tem controles, não tem como desenhar a curva
     if (!this.controls.length) return;
+    // S_PONT = Show pontos
     if (S_PONT) {
+      // retorna uma cor bonita dependendo de se está selecionado ou não
       const color = !selected ? ()=> '#656595' : p => {
         return (p===this.iControl)?'#24EF24':'#2265AA'
       }
+      // para cada controle
       for (const p of this.controls) {
         context.beginPath()
+        // desena uma bolinha no local
         context.arc(p[0], p[1], 5, 0, PI_2, false)
         context.strokeStyle=color(p)
         context.stroke()
       }
     }
+    // S_CURV = show curves
+    // N_AVAL = número de avaliações
     if (S_CURV && N_AVAL > 0) {
       context.beginPath()
       const m = N_AVAL - 1
@@ -33,6 +42,7 @@ class Curva {
       context.strokeStyle= selected?'#FC2280':'#000'
       context.stroke()
     }
+    // S_POLI = show poligonais
     if (S_POLI) {
       const layers = this.controls.length
       recursiveLines(this.controls, layers, layers)
@@ -60,6 +70,7 @@ class Curva {
     }
     return index+1
   }
+  // o De Casteljuoaooauoauuao
   _bezier(t) {
     for (var a = this.controls; a.length > 1; a = b) {
       for (var i = 0, b = [], j; i < a.length - 1; i++) {
