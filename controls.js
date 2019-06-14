@@ -41,3 +41,7 @@ document.querySelector('#remove').addEventListener('click', () => {
   }
   update()
 })
+document.querySelector('#next').addEventListener('click', () => {
+  currentCurve = ((currentCurve || 0) + 1) % curvas.length
+  update()
+})
