@@ -32,3 +32,12 @@ document.querySelector('#novo').addEventListener('click', () => {
   currentCurve = len-1
   update()
 })
+document.querySelector('#remove').addEventListener('click', () => {
+  if (curvas[currentCurve]) {
+    curvas.splice(currentCurve, 1)
+  }
+  if (currentCurve >= curvas.length) {
+    --currentCurve
+  }
+  update()
+})
