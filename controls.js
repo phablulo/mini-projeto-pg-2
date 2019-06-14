@@ -1,6 +1,6 @@
 N_AVAL  = 6
 S_PONT = true
-S_POLI = true
+S_POLI = false
 S_CURV = true
 
 document.querySelector('#naval').addEventListener('input', e => {

@@ -8,6 +8,7 @@ class Curva {
     ]
   }
   draw(context, selected) {
+    if (!this.controls.length) return;
     if (S_PONT) {
       const color = !selected ? ()=> '#656595' : p => {
         return (p===this.iControl)?'#24EF24':'#2265AA'
@@ -32,7 +33,7 @@ class Curva {
       context.strokeStyle= selected?'#FC2280':'#000'
       context.stroke()
     }
-    if (S_POLI && this.controls.length > 0) {
+    if (S_POLI) {
       const layers = this.controls.length
       recursiveLines(this.controls, layers, layers)
     }
