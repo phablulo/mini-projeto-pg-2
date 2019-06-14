@@ -1,4 +1,4 @@
-N_AVAL  = 3
+N_AVAL  = 6
 S_PONT = true
 S_POLI = true
 S_CURV = true
