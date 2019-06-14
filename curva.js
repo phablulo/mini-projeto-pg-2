@@ -32,6 +32,10 @@ class Curva {
       context.strokeStyle= selected?'#FC2280':'#000'
       context.stroke()
     }
+    if (S_POLI && this.controls.length > 0) {
+      const layers = this.controls.length
+      recursiveLines(this.controls, layers, layers)
+    }
   }
   addControl(x, y) {
     const p = [x, y]
@@ -71,4 +75,33 @@ function deviateFrom(point) {
     point[0] + Math.round(Math.random() * 80)-40,
     point[1] + Math.round(Math.random() * 80)-40,
   ]
+}
+function recursiveLines(points, layer, layers) {
+  const len = points.length
+  context.beginPath()
+  context.moveTo(...points[0])
+  for (let i = 1; i < len; ++i) {
+    context.lineTo(...points[i])
+  }
+  context.strokeStyle = gcolor(layer/layers)
+  context.stroke()
+  // calcula as interpolações e continua
+  const l = len - 1
+  if (l < 2) return; // exceto se for pouco demais
+  const medios = Array(l)
+  for (let i = 1; i < len; ++i) {
+    const p0 = points[i-1]
+    const p1 = points[i]
+    medios[i-1] = [
+      0.5*p0[0] + 0.5*p1[0],
+      0.5*p0[1] + 0.5*p1[1]
+    ]
+  }
+  return recursiveLines(medios, --layer, layers)
+}
+function gcolor(n) {
+  const r = 40
+  const g = 40 + Math.round(n * 200)
+  const b = 40 + Math.round(n * 150)
+  return 'rgb('+r+','+g+','+b+')'
 }
